@@ -48,9 +48,41 @@ Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
 
 ## Installation
 
+### Using uv (Recommended - Fast!)
+
+[uv](https://github.com/astral-sh/uv) is an extremely fast Python package manager written in Rust. It's 10-100x faster than pip!
+
+**Quick Install:**
+
 ```bash
-git clone <your-repo-url>
-cd yt-mp3-downloader
+# Install uv (if you don't have it)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone the repository
+git clone git@github.com:kulcsarrudolf/ytmp3.git
+cd ytmp3
+
+# Install with uv
+uv pip install -e .
+
+# Or create a virtual environment first (recommended)
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+uv pip install -e .
+```
+
+**Why uv?**
+- ⚡ 10-100x faster than pip
+- 🦀 Written in Rust for maximum performance
+- 🎯 Drop-in replacement for pip commands
+- 🔒 Better dependency resolution
+- 💾 Smart caching system
+
+### Using pip (Traditional)
+
+```bash
+git clone git@github.com:kulcsarrudolf/ytmp3.git
+cd ytmp3
 pip install -e .
 ```
 

@@ -2,9 +2,30 @@
 
 ## Installation
 
+### Using uv (Recommended - 10-100x faster!)
+
 ```bash
-git clone <your-repo-url>
-cd yt-mp3-downloader
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone and install
+git clone git@github.com:kulcsarrudolf/ytmp3.git
+cd ytmp3
+
+# With virtual environment (recommended)
+uv venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+uv pip install -e .
+
+# Or directly
+uv pip install -e .
+```
+
+### Using pip
+
+```bash
+git clone git@github.com:kulcsarrudolf/ytmp3.git
+cd ytmp3
 pip install -e .
 ```
 

@@ -1,0 +1,45 @@
+[project]
+name = "ytmp3"
+version = "2024.08.15.1"
+description = "Simple YouTube to MP3 extractor with time-based extraction"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    {name = "Rudolf Kulcsar"}
+]
+license = {text = "Public Domain"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Multimedia :: Video :: Conversion",
+]
+
+dependencies = [
+    "yt-dlp>=2024.4.9",
+    "ffmpeg-python",
+    "simber==0.2.6",
+    "downloader-cli>=0.3.4",
+    "pyxdg",
+]
+
+[project.scripts]
+ytmp3 = "ytmp3:entry"
+
+[project.urls]
+Homepage = "https://github.com/kulcsarrudolf/ytmp3"
+Repository = "https://github.com/kulcsarrudolf/ytmp3"
+
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["ytmp3"]
+
