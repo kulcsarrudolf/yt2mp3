@@ -16,6 +16,7 @@ Now I can extract exactly what I need from any YouTube video without dealing wit
 - ✅ Multiple output formats (mp3, m4a, opus)
 - ✅ Configurable audio quality
 - ✅ Authentication support for restricted videos
+- ✅ Beautiful web interface to generate commands (no installation needed)
 
 ## Requirements
 
@@ -56,6 +57,7 @@ Beautiful, user-friendly web interface - no installation needed!
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue)
 
 **Features:**
+
 - 📝 Paste YouTube URL
 - ⏱️ Enter start/end times or use quick duration buttons (+10s, +30s, +1m, +5m, +10m)
 - 🎵 Choose format (MP3, M4A, Opus) and quality
