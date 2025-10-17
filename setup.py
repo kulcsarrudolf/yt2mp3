@@ -33,7 +33,7 @@ if __name__ == '__main__':
             "Topic :: Multimedia :: Sound/Audio",
             "Topic :: Multimedia :: Video :: Conversion",
         ),
-        python_requires=">=3.6",
+        python_requires=">=3.10",
         install_requires=req_pkgs,
         entry_points={
             'console_scripts': [

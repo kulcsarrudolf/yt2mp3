@@ -3,7 +3,7 @@ name = "yt2mp3"
 version = "2024.08.15.1"
 description = "Simple YouTube to MP3 extractor with time-based extraction"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [
     {name = "Rudolf Kulcsar"}
 ]
