@@ -48,15 +48,21 @@ Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
 
 ## Web Interface
 
-**🌐 Want a visual interface?** Open `index.html` in your browser for a beautiful, user-friendly form where you can paste YouTube links and generate commands!
+**🌐 Try it online:** [https://kulcsarrudolf.github.io/yt2mp3/](https://kulcsarrudolf.github.io/yt2mp3/)
+
+Beautiful, user-friendly web interface - no installation needed!
 
 ![Web Interface](https://img.shields.io/badge/Interface-Available-brightgreen)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue)
 
-- No installation needed for the interface
-- Paste YouTube URL
-- Enter start/end times
-- Get ready-to-use Docker or CLI commands
-- One-click copy to clipboard
+**Features:**
+- 📝 Paste YouTube URL
+- ⏱️ Enter start/end times or use quick duration buttons (+10s, +30s, +1m, +5m, +10m)
+- 🎵 Choose format (MP3, M4A, Opus) and quality
+- 📋 Get ready-to-use Docker or CLI commands
+- 📋 One-click copy to clipboard
+
+**Or run locally:** Open `index.html` in your browser
 
 ## Installation
 
