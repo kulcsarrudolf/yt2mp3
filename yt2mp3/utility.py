@@ -3,7 +3,7 @@
 from os import remove
 import ffmpeg
 from simber import Logger
-from ytmp3 import defaults
+from yt2mp3 import defaults
 
 logger = Logger("Utility")
 

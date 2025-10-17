@@ -4,8 +4,8 @@ import os
 import yt_dlp
 from sys import stdout
 from simber import Logger
-from ytmp3 import defaults
-from ytmp3.exceptions import ExtractError
+from yt2mp3 import defaults
+from yt2mp3.exceptions import ExtractError
 from downloader_cli.download import Download
 
 logger = Logger("yt")

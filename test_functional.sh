@@ -4,20 +4,20 @@
 set -e
 
 echo "╔══════════════════════════════════════════════════════════════╗"
-echo "║            ytmp3 Functional Test (5 sec clip)                ║"
+echo "║            yt2mp3 Functional Test (5 sec clip)               ║"
 echo "╚══════════════════════════════════════════════════════════════╝"
 echo ""
 
-# Check if ytmp3 is available
-if ! command -v ytmp3 &> /dev/null; then
-    echo "❌ ytmp3 is not installed. Please install it first:"
+# Check if yt2mp3 is available
+if ! command -v yt2mp3 &> /dev/null; then
+    echo "❌ yt2mp3 is not installed. Please install it first:"
     echo "   uv pip install -e ."
     exit 1
 fi
 
 # Test video URL (public domain)
 TEST_URL="https://www.youtube.com/watch?v=jNQXAC9IVRw"  # "Me at the zoo" - first YouTube video
-TEST_OUTPUT="/tmp/ytmp3_test"
+TEST_OUTPUT="/tmp/yt2mp3_test"
 TIMESTAMP=$(date +%s)
 
 echo "🎵 Test Configuration:"
@@ -26,16 +26,16 @@ echo "   Clip: 5 seconds (from 0:01 to 0:06)"
 echo "   Output: ${TEST_OUTPUT}_${TIMESTAMP}.mp3"
 echo ""
 
-echo "📥 Running ytmp3..."
-echo "   Command: ytmp3 --url \"$TEST_URL\" --start-time 1 --duration 5 --output-dir /tmp --filename ytmp3_test_${TIMESTAMP} --quality 128 --quiet"
+echo "📥 Running yt2mp3..."
+echo "   Command: yt2mp3 --url \"$TEST_URL\" --start-time 1 --duration 5 --output-dir /tmp --filename yt2mp3_test_${TIMESTAMP} --quality 128 --quiet"
 echo ""
 
 # Run the actual test
-if ytmp3 --url "$TEST_URL" \
+if yt2mp3 --url "$TEST_URL" \
          --start-time 1 \
          --duration 5 \
          --output-dir /tmp \
-         --filename "ytmp3_test_${TIMESTAMP}" \
+         --filename "yt2mp3_test_${TIMESTAMP}" \
          --quality 128 \
          --quiet 2>&1; then
     
@@ -62,7 +62,7 @@ if ytmp3 --url "$TEST_URL" \
         exit 1
     fi
 else
-    echo "❌ Test failed: ytmp3 command failed"
+    echo "❌ Test failed: yt2mp3 command failed"
     exit 1
 fi
 

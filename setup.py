@@ -6,7 +6,7 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-exec(open("ytmp3/__version__.py").read())
+exec(open("yt2mp3/__version__.py").read())
 
 # Minimal dependencies for video extraction
 req_pkgs = [
@@ -19,7 +19,7 @@ req_pkgs = [
 
 if __name__ == '__main__':
     setuptools.setup(
-        name="yt-mp3-downloader",
+        name="yt2mp3",
         version=__version__,
         description="Simple YouTube video to MP3 extractor with time-based extraction",
         long_description=long_description,
@@ -37,7 +37,7 @@ if __name__ == '__main__':
         install_requires=req_pkgs,
         entry_points={
             'console_scripts': [
-                "ytmp3 = ytmp3:entry"
+                "yt2mp3 = yt2mp3:entry"
             ]
         },
     )

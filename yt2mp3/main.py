@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-yt-mp3-downloader - Download portions of YouTube videos as MP3.
+yt2mp3 - Download portions of YouTube videos as MP3.
 """
 
 from __future__ import unicode_literals
@@ -10,17 +10,17 @@ import sys
 from os import path, makedirs
 from simber import Logger
 
-from ytmp3 import yt, utility, defaults
-from ytmp3.exceptions import DownloadError, ConvertError
-from ytmp3.__version__ import __version__
+from yt2mp3 import yt, utility, defaults
+from yt2mp3.exceptions import DownloadError, ConvertError
+from yt2mp3.__version__ import __version__
 
-logger = Logger('ytmp3')
+logger = Logger('yt2mp3')
 
 
 def arguments():
     """Parse the arguments."""
     parser = argparse.ArgumentParser(
-        description='yt-mp3-downloader - Extract audio from YouTube videos'
+        description='yt2mp3 - Extract audio from YouTube videos'
     )
 
     parser.add_argument(

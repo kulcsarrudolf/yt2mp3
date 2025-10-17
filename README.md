@@ -59,8 +59,8 @@ Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone the repository
-git clone git@github.com:kulcsarrudolf/ytmp3.git
-cd ytmp3
+git clone git@github.com:kulcsarrudolf/yt2mp3.git
+cd yt2mp3
 
 # Install with uv
 uv pip install -e .
@@ -82,8 +82,8 @@ uv pip install -e .
 ### Using pip (Traditional)
 
 ```bash
-git clone git@github.com:kulcsarrudolf/ytmp3.git
-cd ytmp3
+git clone git@github.com:kulcsarrudolf/yt2mp3.git
+cd yt2mp3
 pip install -e .
 ```
 
@@ -92,13 +92,13 @@ pip install -e .
 ### Basic Command
 
 ```bash
-ytmp3 --url "YOUTUBE_URL" --start-time START --end-time END
+yt2mp3 --url "YOUTUBE_URL" --start-time START --end-time END
 ```
 
 Or use the short form:
 
 ```bash
-ytmp3 --url URL --start-time 30:21 --duration 25:00
+yt2mp3 --url URL --start-time 30:21 --duration 25:00
 ```
 
 ### Options
@@ -133,26 +133,26 @@ Other:
 
 ```bash
 # Download 25 minutes starting from 30:21
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" --start-time 30:21 --duration 25:00
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" --start-time 30:21 --duration 25:00
 
 # Download from 1:13:57 to 1:52:50
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" --start-time 1:13:57 --end-time 1:52:50
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" --start-time 1:13:57 --end-time 1:52:50
 
 # Using seconds (1821 seconds = 30:21)
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" --start-time 1821 --duration 1500
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" --start-time 1821 --duration 1500
 ```
 
 ### Download entire video
 
 ```bash
 # If no time parameters are specified, downloads the entire video
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID"
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID"
 ```
 
 ### Specify output location and filename
 
 ```bash
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
       --output-dir ~/Music \
@@ -163,13 +163,13 @@ ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
 
 ```bash
 # Output as OPUS (smaller file size)
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
       --format opus
 
 # Output as M4A
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
       --format m4a
@@ -179,13 +179,13 @@ ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
 
 ```bash
 # Higher quality (320kbps is default)
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
       --quality 320
 
 # Lower quality for smaller file size
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
       --quality 128
@@ -195,7 +195,7 @@ ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
 
 ```bash
 # Suppress output messages
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
       --quiet
@@ -221,7 +221,7 @@ The tool supports flexible time formats:
 
 Some videos require authentication. Create a config file with browser cookies:
 
-**Create config file:** `ytmp3.conf`
+**Create config file:** `yt2mp3.conf`
 
 ```
 --cookies-from-browser chrome
@@ -232,10 +232,10 @@ Use available browsers: `chrome`, `firefox`, `safari`, `edge`, `opera`, `brave`
 **Then use it:**
 
 ```bash
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
-      --ytdl-config ytmp3.conf
+      --ytdl-config yt2mp3.conf
 ```
 
 ## How It Works
@@ -251,23 +251,23 @@ ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
 ### Extract a podcast segment
 
 ```bash
-ytmp3 --url "PODCAST_URL" --start-time 15:30 --duration 45:00 -o ~/Podcasts
+yt2mp3 --url "PODCAST_URL" --start-time 15:30 --duration 45:00 -o ~/Podcasts
 ```
 
 ### Extract a song from a concert video
 
 ```bash
-ytmp3 --url "CONCERT_URL" --start-time 1:23:45 --end-time 1:27:30 --filename "song_name"
+yt2mp3 --url "CONCERT_URL" --start-time 1:23:45 --end-time 1:27:30 --filename "song_name"
 ```
 
 ### Extract multiple segments from a lecture
 
 ```bash
 # Part 1
-ytmp3 --url "LECTURE_URL" --start-time 5:00 --end-time 25:00 --filename "lecture_part1"
+yt2mp3 --url "LECTURE_URL" --start-time 5:00 --end-time 25:00 --filename "lecture_part1"
 
 # Part 2
-ytmp3 --url "LECTURE_URL" --start-time 30:00 --end-time 50:00 --filename "lecture_part2"
+yt2mp3 --url "LECTURE_URL" --start-time 30:00 --end-time 50:00 --filename "lecture_part2"
 ```
 
 ## Troubleshooting

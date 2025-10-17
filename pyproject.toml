@@ -1,5 +1,5 @@
 [project]
-name = "ytmp3"
+name = "yt2mp3"
 version = "2024.08.15.1"
 description = "Simple YouTube to MP3 extractor with time-based extraction"
 readme = "README.md"
@@ -30,16 +30,16 @@ dependencies = [
 ]
 
 [project.scripts]
-ytmp3 = "ytmp3:entry"
+yt2mp3 = "yt2mp3:entry"
 
 [project.urls]
-Homepage = "https://github.com/kulcsarrudolf/ytmp3"
-Repository = "https://github.com/kulcsarrudolf/ytmp3"
+Homepage = "https://github.com/kulcsarrudolf/yt2mp3"
+Repository = "https://github.com/kulcsarrudolf/yt2mp3"
 
 [build-system]
 requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["ytmp3"]
+packages = ["yt2mp3"]
 

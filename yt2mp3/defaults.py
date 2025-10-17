@@ -11,7 +11,7 @@ class DEFAULT:
     HOME_DIR = os.path.expanduser('~')
 
     # The temp directory where songs will be processed
-    SONG_TEMP_DIR = os.path.join(xdg_cache_home, 'ytmp3')
+    SONG_TEMP_DIR = os.path.join(xdg_cache_home, 'yt2mp3')
 
     # The song quality in kbps
     SONG_QUALITY = 320

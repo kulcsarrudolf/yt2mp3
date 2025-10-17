@@ -9,8 +9,8 @@
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and install
-git clone git@github.com:kulcsarrudolf/ytmp3.git
-cd ytmp3
+git clone git@github.com:kulcsarrudolf/yt2mp3.git
+cd yt2mp3
 
 # With virtual environment (recommended)
 uv venv
@@ -24,8 +24,8 @@ uv pip install -e .
 ### Using pip
 
 ```bash
-git clone git@github.com:kulcsarrudolf/ytmp3.git
-cd ytmp3
+git clone git@github.com:kulcsarrudolf/yt2mp3.git
+cd yt2mp3
 pip install -e .
 ```
 
@@ -35,12 +35,12 @@ pip install -e .
 
 ```bash
 # Extract 25 minutes starting at 30:21
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00
 
 # Extract from 1:13:57 to 1:52:50
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 1:13:57 \
       --end-time 1:52:50
 ```
@@ -48,13 +48,13 @@ ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
 ### Download entire video
 
 ```bash
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID"
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID"
 ```
 
 ### Specify output location
 
 ```bash
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
       --output-dir ~/Music \
@@ -63,7 +63,7 @@ ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
 
 ## Authentication (for restricted videos)
 
-Create a config file `ytmp3.conf`:
+Create a config file `yt2mp3.conf`:
 
 ```
 --cookies-from-browser chrome
@@ -72,10 +72,10 @@ Create a config file `ytmp3.conf`:
 Use it:
 
 ```bash
-ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
+yt2mp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
       --start-time 30:21 \
       --duration 25:00 \
-      --ytdl-config ytmp3.conf
+      --ytdl-config yt2mp3.conf
 ```
 
 ## Time Formats
@@ -103,19 +103,19 @@ ytmp3 --url "https://youtube.com/watch?v=VIDEO_ID" \
 **Extract podcast segment:**
 
 ```bash
-ytmp3 --url "PODCAST_URL" --start-time 15:30 --duration 45:00
+yt2mp3 --url "PODCAST_URL" --start-time 15:30 --duration 45:00
 ```
 
 **Extract song from concert:**
 
 ```bash
-ytmp3 --url "CONCERT_URL" --start-time 1:23:45 --end-time 1:27:30
+yt2mp3 --url "CONCERT_URL" --start-time 1:23:45 --end-time 1:27:30
 ```
 
 **Lower quality for smaller file:**
 
 ```bash
-ytmp3 --url "VIDEO_URL" --start-time 30:21 --duration 25:00 --quality 128
+yt2mp3 --url "VIDEO_URL" --start-time 30:21 --duration 25:00 --quality 128
 ```
 
 For more details, see [README.md](README.md)
