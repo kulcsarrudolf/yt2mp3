@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  yt2mp3:
+    build: .
+    image: yt2mp3:latest
+    container_name: yt2mp3
+    volumes:
+      # Mount output directory
+      - ./output:/output
+      # Mount config for authentication
+      - ./examples:/config:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    # Override entrypoint for interactive use
+    entrypoint: yt2mp3
+    # Example command (override with docker-compose run)
+    command: --help
+
+# Usage examples:
+# docker-compose run --rm yt2mp3 --url "YOUTUBE_URL" --start-time 1:12 --duration 3:00 --output-dir /output
+# docker-compose run --rm yt2mp3 --url "URL" --start-time 1:12 --end-time 4:12 --output-dir /output --ytdl-config /config/yt2mp3.conf
+

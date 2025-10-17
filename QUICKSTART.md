@@ -1,6 +1,18 @@
-# yt-mp3-downloader Quick Start Guide
+# yt2mp3 Quick Start Guide
 
 ## Installation
+
+### Using Docker (Easiest!)
+
+```bash
+# Clone and build
+git clone git@github.com:kulcsarrudolf/yt2mp3.git
+cd yt2mp3
+docker build -t yt2mp3 .
+
+# Run
+./docker-run.sh --url "YOUTUBE_URL" --start-time 1:12 --duration 3:00 --output-dir /output
+```
 
 ### Using uv (Recommended - 10-100x faster!)
 

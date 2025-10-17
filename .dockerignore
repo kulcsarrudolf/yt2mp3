@@ -12,30 +12,30 @@ build/
 venv/
 .venv/
 env/
+.venv-*/
 
 # uv
 .uv/
 uv.lock
-.python-version
 
 # IDEs
 .vscode/
 .idea/
 .DS_Store
 
+# Git
+.git/
+.gitignore
+
 # Cache
 .cache/
-.cache
 
 # Test artifacts
 .venv-test/
 test_output/
 TEST_RESULTS.md
 
-# Docker
-output/
-
-# Downloaded audio files
+# Downloaded files
 *.mp3
 *.m4a
 *.opus
@@ -44,3 +44,8 @@ output/
 
 # Logs
 *.log
+
+# Documentation (keep README)
+QUICKSTART.md
+LICENSE
+

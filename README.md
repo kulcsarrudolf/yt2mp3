@@ -48,6 +48,47 @@ Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
 
 ## Installation
 
+### Using Docker (Easiest!)
+
+Docker provides the simplest way to run yt2mp3 without worrying about Python versions or dependencies.
+
+**Quick Start:**
+
+```bash
+# Clone the repository
+git clone git@github.com:kulcsarrudolf/yt2mp3.git
+cd yt2mp3
+
+# Build the Docker image
+docker build -t yt2mp3 .
+
+# Run with the helper script
+./docker-run.sh --url "YOUTUBE_URL" --start-time 1:12 --duration 3:00 --output-dir /output
+
+# Or use docker directly
+docker run --rm -v "$(pwd)/output:/output" yt2mp3 --url "URL" --start-time 1:12 --end-time 4:12 --output-dir /output
+
+# Or use docker-compose
+docker-compose run --rm yt2mp3 --url "URL" --start-time 1:12 --duration 3:00 --output-dir /output
+```
+
+**With Authentication (Chrome cookies):**
+
+```bash
+docker run --rm \
+  -v "$(pwd)/output:/output" \
+  -v "$(pwd)/examples:/config:ro" \
+  yt2mp3 --url "URL" --start-time 1:12 --duration 3:00 --output-dir /output --ytdl-config /config/yt2mp3.conf
+```
+
+**Why Docker?**
+
+- ✅ No Python installation needed
+- ✅ All dependencies included
+- ✅ Works the same on all platforms
+- ✅ Isolated from your system
+- ✅ Easy to update and remove
+
 ### Using uv (Recommended - Fast!)
 
 [uv](https://github.com/astral-sh/uv) is an extremely fast Python package manager written in Rust. It's 10-100x faster than pip!
