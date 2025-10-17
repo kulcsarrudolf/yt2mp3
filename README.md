@@ -46,6 +46,18 @@ sudo pacman -S ffmpeg
 **Windows:**
 Download from [ffmpeg.org](https://ffmpeg.org/download.html) and add to PATH.
 
+## Web Interface
+
+**🌐 Want a visual interface?** Open `index.html` in your browser for a beautiful, user-friendly form where you can paste YouTube links and generate commands!
+
+![Web Interface](https://img.shields.io/badge/Interface-Available-brightgreen)
+
+- No installation needed for the interface
+- Paste YouTube URL
+- Enter start/end times
+- Get ready-to-use Docker or CLI commands
+- One-click copy to clipboard
+
 ## Installation
 
 ### Using Docker (Easiest!)

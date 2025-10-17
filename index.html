@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>yt2mp3 - YouTube to MP3 Converter</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        max-width: 600px;
+        width: 100%;
+        padding: 40px;
+        animation: fadeIn 0.5s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .logo {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      input[type="text"],
+      input[type="time"],
+      select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      input[type="text"]:focus,
+      input[type="time"]:focus,
+      select:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .time-inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      .help-text {
+        font-size: 12px;
+        color: #999;
+        margin-top: 5px;
+      }
+
+      .button-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 30px;
+      }
+
+      button {
+        padding: 14px 24px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn-secondary {
+        background: #f5f5f5;
+        color: #333;
+      }
+
+      .btn-secondary:hover {
+        background: #e0e0e0;
+      }
+
+      .output {
+        margin-top: 30px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        display: none;
+      }
+
+      .output.show {
+        display: block;
+        animation: slideDown 0.3s ease;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          max-height: 0;
+        }
+        to {
+          opacity: 1;
+          max-height: 500px;
+        }
+      }
+
+      .output h3 {
+        color: #333;
+        font-size: 16px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .tab-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .tab-btn {
+        padding: 8px 16px;
+        background: white;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .tab-btn.active {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+      }
+
+      .command-box {
+        background: #2d2d2d;
+        color: #f8f8f8;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        overflow-x: auto;
+        position: relative;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 6px 12px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .copy-btn:hover {
+        background: #5568d3;
+      }
+
+      .copy-btn.copied {
+        background: #4caf50;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .error {
+        color: #f44336;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .error.show {
+        display: block;
+      }
+
+      .example-link {
+        color: #667eea;
+        text-decoration: none;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .example-link:hover {
+        text-decoration: underline;
+      }
+
+      .footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+      }
+
+      .footer a {
+        color: #667eea;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        text-decoration: underline;
+      }
+
+      .quick-buttons {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+
+      .quick-btn {
+        padding: 6px 12px;
+        background: #f0f0f0;
+        border: 1px solid #d0d0d0;
+        border-radius: 6px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #333;
+      }
+
+      .quick-btn:hover {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+      }
+
+      .quick-btn:active {
+        transform: scale(0.95);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">🎵</div>
+        <h1>yt2mp3</h1>
+        <p class="subtitle">Extract audio clips from YouTube videos</p>
+      </div>
+
+      <form id="clipForm">
+        <div class="form-group">
+          <label for="url">YouTube URL *</label>
+          <input
+            type="text"
+            id="url"
+            placeholder="https://www.youtube.com/watch?v=..."
+            required
+          />
+          <div class="help-text">
+            <a href="#" class="example-link" onclick="fillExample(event)"
+              >Try an example</a
+            >
+          </div>
+          <div id="url-error" class="error">
+            Please enter a valid YouTube URL
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Time Selection</label>
+          <div class="time-inputs">
+            <div>
+              <input type="text" id="startTime" placeholder="1:12 or 1:12:30" />
+              <div class="help-text">Start time (HH:MM:SS)</div>
+            </div>
+            <div>
+              <input type="text" id="endTime" placeholder="4:12 or 1:15:30" />
+              <div class="help-text">
+                End time (HH:MM:SS) or use quick buttons:
+              </div>
+              <div class="quick-buttons">
+                <button
+                  type="button"
+                  class="quick-btn"
+                  onclick="addDuration(10)"
+                >
+                  +10s
+                </button>
+                <button
+                  type="button"
+                  class="quick-btn"
+                  onclick="addDuration(30)"
+                >
+                  +30s
+                </button>
+                <button
+                  type="button"
+                  class="quick-btn"
+                  onclick="addDuration(60)"
+                >
+                  +1m
+                </button>
+                <button
+                  type="button"
+                  class="quick-btn"
+                  onclick="addDuration(300)"
+                >
+                  +5m
+                </button>
+                <button
+                  type="button"
+                  class="quick-btn"
+                  onclick="addDuration(600)"
+                >
+                  +10m
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="help-text" style="margin-top: 10px">
+            Leave empty to download the entire video
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="format">Output Format</label>
+          <select id="format">
+            <option value="mp3" selected>MP3</option>
+            <option value="m4a">M4A</option>
+            <option value="opus">Opus</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="quality">Audio Quality (kbps)</label>
+          <select id="quality">
+            <option value="128">128 kbps (Good)</option>
+            <option value="192">192 kbps (Better)</option>
+            <option value="256">256 kbps (High)</option>
+            <option value="320" selected>320 kbps (Best)</option>
+          </select>
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="btn-secondary" onclick="resetForm()">
+            Clear
+          </button>
+          <button type="submit" class="btn-primary">Generate Command</button>
+        </div>
+      </form>
+
+      <div id="output" class="output">
+        <h3>📋 Command Ready!</h3>
+
+        <div class="tab-buttons">
+          <button class="tab-btn active" onclick="switchTab('docker')">
+            Docker
+          </button>
+          <button class="tab-btn" onclick="switchTab('cli')">CLI</button>
+          <button class="tab-btn" onclick="switchTab('compose')">
+            Docker Compose
+          </button>
+        </div>
+
+        <div id="tab-docker" class="tab-content active">
+          <div class="command-box">
+            <button class="copy-btn" onclick="copyCommand('docker')">
+              Copy
+            </button>
+            <pre id="docker-command"></pre>
+          </div>
+        </div>
+
+        <div id="tab-cli" class="tab-content">
+          <div class="command-box">
+            <button class="copy-btn" onclick="copyCommand('cli')">Copy</button>
+            <pre id="cli-command"></pre>
+          </div>
+        </div>
+
+        <div id="tab-compose" class="tab-content">
+          <div class="command-box">
+            <button class="copy-btn" onclick="copyCommand('compose')">
+              Copy
+            </button>
+            <pre id="compose-command"></pre>
+          </div>
+        </div>
+
+        <div class="help-text" style="margin-top: 15px">
+          💡 Run this command in your terminal to download the clip
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>
+          Open source on
+          <a href="https://github.com/kulcsarrudolf/yt2mp3" target="_blank"
+            >GitHub</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <script>
+      function fillExample(e) {
+        e.preventDefault();
+        document.getElementById("url").value =
+          "https://www.youtube.com/watch?v=jNQXAC9IVRw";
+        document.getElementById("startTime").value = "0:05";
+        document.getElementById("endTime").value = "0:15";
+      }
+
+      function validateYouTubeURL(url) {
+        const patterns = [
+          /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/,
+          /^https?:\/\/(www\.)?youtube\.com\/watch\?v=.+/,
+          /^https?:\/\/youtu\.be\/.+/,
+        ];
+        return patterns.some((pattern) => pattern.test(url));
+      }
+
+      function formatTime(time) {
+        if (!time) return "";
+        // Remove spaces and validate
+        time = time.trim();
+        // If it's just numbers, assume seconds
+        if (/^\d+$/.test(time)) {
+          return time;
+        }
+        // Already in HH:MM:SS or MM:SS format
+        return time;
+      }
+
+      function parseTimeToSeconds(time) {
+        if (!time) return 0;
+        time = time.trim();
+
+        // If it's just numbers, it's already in seconds
+        if (/^\d+$/.test(time)) {
+          return parseInt(time);
+        }
+
+        // Parse HH:MM:SS or MM:SS format
+        const parts = time.split(":").map((p) => parseInt(p));
+
+        if (parts.length === 3) {
+          // HH:MM:SS
+          return parts[0] * 3600 + parts[1] * 60 + parts[2];
+        } else if (parts.length === 2) {
+          // MM:SS
+          return parts[0] * 60 + parts[1];
+        }
+
+        return 0;
+      }
+
+      function secondsToTimeString(seconds) {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+
+        if (hours > 0) {
+          return `${hours}:${String(minutes).padStart(2, "0")}:${String(
+            secs
+          ).padStart(2, "0")}`;
+        } else {
+          return `${minutes}:${String(secs).padStart(2, "0")}`;
+        }
+      }
+
+      function addDuration(durationSeconds) {
+        const startTimeInput = document.getElementById("startTime");
+        const endTimeInput = document.getElementById("endTime");
+
+        const startTime = startTimeInput.value.trim();
+        const endTime = endTimeInput.value.trim();
+
+        if (!startTime) {
+          alert("Please enter a start time first!");
+          startTimeInput.focus();
+          return;
+        }
+
+        let baseSeconds;
+
+        // If end time already exists, add to that. Otherwise, add to start time
+        if (endTime) {
+          baseSeconds = parseTimeToSeconds(endTime);
+        } else {
+          baseSeconds = parseTimeToSeconds(startTime);
+        }
+
+        const newEndSeconds = baseSeconds + durationSeconds;
+
+        endTimeInput.value = secondsToTimeString(newEndSeconds);
+      }
+
+      function switchTab(tab) {
+        // Update buttons
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        event.target.classList.add("active");
+
+        // Update content
+        document.querySelectorAll(".tab-content").forEach((content) => {
+          content.classList.remove("active");
+        });
+        document.getElementById(`tab-${tab}`).classList.add("active");
+      }
+
+      function copyCommand(type) {
+        const commandElement = document.getElementById(`${type}-command`);
+        const button = event.target;
+
+        navigator.clipboard.writeText(commandElement.textContent).then(() => {
+          button.textContent = "✓ Copied!";
+          button.classList.add("copied");
+
+          setTimeout(() => {
+            button.textContent = "Copy";
+            button.classList.remove("copied");
+          }, 2000);
+        });
+      }
+
+      function generateCommands(url, startTime, endTime, format, quality) {
+        const baseArgs = [
+          `--url "${url}"`,
+          startTime ? `--start-time ${startTime}` : "",
+          endTime ? `--end-time ${endTime}` : "",
+          format !== "mp3" ? `--format ${format}` : "",
+          quality !== "320" ? `--quality ${quality}` : "",
+          "--output-dir /output",
+        ]
+          .filter((arg) => arg)
+          .join(" \\\n  ");
+
+        const dockerCmd = `docker run --rm \\
+  -v "$(pwd)/output:/output" \\
+  yt2mp3 ${baseArgs}`;
+
+        const cliCmd = `yt2mp3 ${baseArgs.replace("/output", ".")}`;
+
+        const composeCmd = `docker-compose run --rm yt2mp3 \\
+  ${baseArgs}`;
+
+        return { dockerCmd, cliCmd, composeCmd };
+      }
+
+      function resetForm() {
+        document.getElementById("clipForm").reset();
+        document.getElementById("output").classList.remove("show");
+        document.getElementById("url-error").classList.remove("show");
+      }
+
+      document
+        .getElementById("clipForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const url = document.getElementById("url").value.trim();
+          const startTime = formatTime(
+            document.getElementById("startTime").value
+          );
+          const endTime = formatTime(document.getElementById("endTime").value);
+          const format = document.getElementById("format").value;
+          const quality = document.getElementById("quality").value;
+
+          // Validate URL
+          const urlError = document.getElementById("url-error");
+          if (!validateYouTubeURL(url)) {
+            urlError.classList.add("show");
+            return;
+          }
+          urlError.classList.remove("show");
+
+          // Generate commands
+          const { dockerCmd, cliCmd, composeCmd } = generateCommands(
+            url,
+            startTime,
+            endTime,
+            format,
+            quality
+          );
+
+          // Display commands
+          document.getElementById("docker-command").textContent = dockerCmd;
+          document.getElementById("cli-command").textContent = cliCmd;
+          document.getElementById("compose-command").textContent = composeCmd;
+
+          // Show output
+          document.getElementById("output").classList.add("show");
+
+          // Scroll to output
+          document
+            .getElementById("output")
+            .scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
+
+      // Validate URL on input
+      document.getElementById("url").addEventListener("input", function () {
+        const urlError = document.getElementById("url-error");
+        if (this.value && !validateYouTubeURL(this.value)) {
+          urlError.classList.add("show");
+        } else {
+          urlError.classList.remove("show");
+        }
+      });
+    </script>
+  </body>
+</html>

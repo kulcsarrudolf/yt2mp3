@@ -35,6 +35,9 @@ TEST_RESULTS.md
 # Docker
 output/
 
+# Don't ignore index.html (it's the web interface)
+!index.html
+
 # Downloaded audio files
 *.mp3
 *.m4a
