@@ -72,6 +72,7 @@ uv pip install -e .
 ```
 
 **Why uv?**
+
 - ⚡ 10-100x faster than pip
 - 🦀 Written in Rust for maximum performance
 - 🎯 Drop-in replacement for pip commands

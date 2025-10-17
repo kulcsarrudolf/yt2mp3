@@ -27,6 +27,11 @@ uv.lock
 .cache/
 .cache
 
+# Test artifacts
+.venv-test/
+test_output/
+TEST_RESULTS.md
+
 # Downloaded audio files
 *.mp3
 *.m4a
