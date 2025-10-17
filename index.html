@@ -280,6 +280,48 @@
         text-decoration: underline;
       }
 
+      .info-box {
+        background: #f0f7ff;
+        border-left: 4px solid #667eea;
+        padding: 15px 20px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+      }
+
+      .info-box h3 {
+        color: #667eea;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .info-box p {
+        color: #555;
+        font-size: 13px;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+
+      .info-box a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .info-box a:hover {
+        text-decoration: underline;
+      }
+
+      .info-box ul {
+        margin: 10px 0;
+        padding-left: 20px;
+      }
+
+      .info-box li {
+        color: #555;
+        font-size: 13px;
+        margin-bottom: 5px;
+      }
+
       .quick-buttons {
         display: flex;
         gap: 8px;
@@ -315,6 +357,29 @@
         <div class="logo">🎵</div>
         <h1>yt2mp3</h1>
         <p class="subtitle">Extract audio clips from YouTube videos</p>
+      </div>
+
+      <div class="info-box">
+        <h3>ℹ️ About yt2mp3</h3>
+        <p>
+          <strong>yt2mp3</strong> is a command-line tool that extracts specific
+          portions of YouTube videos as MP3 files. Perfect for downloading
+          podcast segments, music clips, or any audio you need!
+        </p>
+        <p>
+          <strong>⚠️ Note:</strong> This page only generates the commands. To
+          use them, you need:
+        </p>
+        <ul>
+          <li>
+            📦 Clone the repository:
+            <a href="https://github.com/kulcsarrudolf/yt2mp3" target="_blank"
+              >github.com/kulcsarrudolf/yt2mp3</a
+            >
+          </li>
+          <li>🐳 Docker installed on your system</li>
+        </ul>
+        <p>Fill out the form below to generate your custom download command!</p>
       </div>
 
       <form id="clipForm">
@@ -462,20 +527,18 @@
         </div>
       </div>
 
-       <div class="footer">
-         <p>
-           Created with ❤️ by
-           <a href="https://kulcsarrudolf.com" target="_blank"
-             >Kulcsar Rudolf</a
-           >
-         </p>
-         <p style="margin-top: 8px">
-           Open source on
-           <a href="https://github.com/kulcsarrudolf/yt2mp3" target="_blank"
-             >GitHub</a
-           >
-         </p>
-       </div>
+      <div class="footer">
+        <p>
+          Created with ❤️ by
+          <a href="https://kulcsarrudolf.com" target="_blank">Kulcsar Rudolf</a>
+        </p>
+        <p style="margin-top: 8px">
+          Open source on
+          <a href="https://github.com/kulcsarrudolf/yt2mp3" target="_blank"
+            >GitHub</a
+          >
+        </p>
+      </div>
     </div>
 
     <script>
